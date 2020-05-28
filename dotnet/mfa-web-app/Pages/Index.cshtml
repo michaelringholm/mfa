@@ -1,0 +1,27 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "MFA Web App";
+}
+
+<div class="text-center">
+    <h1 class="display-4">MFA Web App</h1>
+    <h2>QR Setup Code</h2>
+    <img id="qrSetupCode" src="@Html.Raw(Model.QrCodeSetupImageUrl)" alt="QR Setup Code">
+
+    <h2>Validate client MFA code</h2>
+    <form method="post">
+        <input type="submit" value="Validate">
+        <input type="text" id="ClientMFA.MFACode" asp-for="ClientMFA.MFACode">
+    </form>
+
+    @{if(Model.IsClientMFACodeValid != null) {
+    if(Model.IsClientMFACodeValid.Value) {
+    <img src="https://st3.depositphotos.com/7819052/14146/v/1600/depositphotos_141463518-stock-illustration-grunge-green-100-percent-secure.jpg" alt="Invalid MFA Code" style="width:128px">
+    }
+    else {
+    <img src="https://www.profit-loss.com/wp-content/uploads/2019/04/rejected.jpg" alt="Valid MFA Code" style="width:128px">
+    }
+    }
+    }
+</div>
